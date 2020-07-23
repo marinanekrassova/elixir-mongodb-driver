@@ -207,8 +207,8 @@ defmodule Mongo.BulkWrite do
          result = ops
                   |> get_op_sequence()
                   |> Enum.map(fn {cmd, docs} -> one_bulk_write_operation(session, cmd, coll, docs, max_batch_size, opts) end)
-                  |> BulkWriteResult.reduce(empty) do
-
+                  |> BulkWriteResult.reduce(empty),
+         :ok    <- Session.end_implict_session(topology_pid, session) do
       result
     else
       {:new_connection, _server} ->
