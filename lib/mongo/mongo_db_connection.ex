@@ -161,8 +161,8 @@ defmodule Mongo.MongoDBConnection do
 
     type = elem(:os.type(), 1)
     %{
-      client: %{
-        application: %{name: appname}
+      application: %{
+        name: appname
       },
       driver: %{
         name: "mongodb_driver",
